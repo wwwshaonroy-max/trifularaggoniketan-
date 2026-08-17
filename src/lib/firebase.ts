@@ -1,0 +1,75 @@
+
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
+// Import Firebase services you will use
+import { getAuth, type Auth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, type Firestore } from "firebase/firestore";
+import { getStorage, type FirebaseStorage } from "firebase/storage";
+import { getAnalytics, type Analytics, isSupported } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? "",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? "",
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL ?? "",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? "",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? "",
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? "",
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? "",
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID ?? ""
+};
+
+export const isFirebaseConfigured = () => {
+  return Boolean(
+    firebaseConfig.apiKey &&
+    firebaseConfig.authDomain &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+  );
+};
+
+if (!isFirebaseConfigured()) {
+  console.warn('Firebase is not configured correctly. Please set the Firebase environment variables in .env.local.');
+}
+
+const app: FirebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth: Auth = getAuth(app);
+export const db: Firestore = getFirestore(app);
+
+export const getDbInstance = (): Firestore => {
+  return db;
+};
+let storageInstance: FirebaseStorage | null = null;
+let analyticsInstance: Analytics | null = null;
+
+export const getStorageInstance = (): FirebaseStorage => {
+    if (typeof window === 'undefined') {
+        throw new Error("Firebase Storage can only be used on the client-side.");
+    }
+    if (!storageInstance) {
+        storageInstance = getStorage(app);
+    }
+    return storageInstance;
+};
+
+export const getAnalyticsInstance = async (): Promise<Analytics | null> => {
+    if (typeof window !== 'undefined') {
+        if (!analyticsInstance && firebaseConfig.measurementId) {
+            const supported = await isSupported();
+            if (supported) {
+                analyticsInstance = getAnalytics(app);
+            }
+        }
+        return analyticsInstance;
+    }
+    return null;
+};
+
+export const createGoogleProvider = () => {
+  const provider = new GoogleAuthProvider();
+  // Force account selection every time
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
+  return provider;
+};
+
+export { app, auth, firebaseConfig };

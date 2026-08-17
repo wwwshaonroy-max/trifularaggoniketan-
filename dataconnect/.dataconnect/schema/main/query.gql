@@ -1,0 +1,267 @@
+extend type Query {
+  """
+  ✨ Look up a single `Appointment` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  appointment(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Appointment_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Appointment_FirstRow
+  ): Appointment @fdc_generated(from: "Appointment", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Doctor` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  doctor(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Doctor_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Doctor_FirstRow
+  ): Doctor @fdc_generated(from: "Doctor", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Patient` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  patient(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Patient_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Patient_FirstRow
+  ): Patient @fdc_generated(from: "Patient", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Treatment` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  treatment(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Treatment_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Treatment_FirstRow
+  ): Treatment @fdc_generated(from: "Treatment", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `VisitNote` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  visitNote(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: VisitNote_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: VisitNote_FirstRow
+  ): VisitNote @fdc_generated(from: "VisitNote", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Appointment` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  appointments(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Appointment_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Appointment_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Appointment_Having
+  ): [Appointment!]! @fdc_generated(from: "Appointment", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Doctor` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  doctors(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Doctor_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Doctor_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Doctor_Having
+  ): [Doctor!]! @fdc_generated(from: "Doctor", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Patient` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  patients(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Patient_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Patient_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Patient_Having
+  ): [Patient!]! @fdc_generated(from: "Patient", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Treatment` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  treatments(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Treatment_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Treatment_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Treatment_Having
+  ): [Treatment!]! @fdc_generated(from: "Treatment", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `VisitNote` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  visitNotes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: VisitNote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [VisitNote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: VisitNote_Having
+  ): [VisitNote!]! @fdc_generated(from: "VisitNote", purpose: QUERY_MULTIPLE)
+}

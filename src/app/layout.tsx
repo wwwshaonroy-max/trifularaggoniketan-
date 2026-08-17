@@ -1,0 +1,89 @@
+import type { Metadata, Viewport } from 'next';
+import './globals.css';
+import { APP_NAME } from '@/lib/constants';
+import { Hind_Siliguri } from 'next/font/google';
+import RootLayoutClient from './RootLayoutClient';
+
+const hindSiliguri = Hind_Siliguri({
+  subsets: ['latin', 'bengali'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-hind-siliguri',
+});
+
+const APP_DESCRIPTION = `Patient Management System for ${APP_NAME}`;
+
+export const metadata: Metadata = {
+  applicationName: APP_NAME,
+  title: {
+    default: APP_NAME,
+    template: `%s | ${APP_NAME}`,
+  },
+  description: APP_DESCRIPTION,
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: APP_NAME,
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: '/icons/icon.png',
+    apple: '/icons/icon.png',
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#020817' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="bn" className={`${hindSiliguri.variable}`} suppressHydrationWarning>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://firestore.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://www.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://identitytoolkit.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://lh3.googleusercontent.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://storage.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
+      </head>
+      <body>
+        <RootLayoutClient>{children}</RootLayoutClient>
+      </body>
+    </html>
+  );
+}

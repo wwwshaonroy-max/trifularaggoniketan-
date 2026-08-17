@@ -1,0 +1,50 @@
+extend type Appointment {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Appointment", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Appointment`.`doctor`. It must match the value of `Doctor`.`id`. See `@ref` for how to customize it.
+  """
+  doctorId: UUID! @fdc_generated(from: "Appointment.doctor", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Appointment`.`patient`. It must match the value of `Patient`.`id`. See `@ref` for how to customize it.
+  """
+  patientId: UUID! @fdc_generated(from: "Appointment.patient", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Doctor {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Doctor", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type Patient {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Patient", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type Treatment {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Treatment", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Treatment`.`patient`. It must match the value of `Patient`.`id`. See `@ref` for how to customize it.
+  """
+  patientId: UUID! @fdc_generated(from: "Treatment.patient", purpose: IMPLICIT_REF_FIELD)
+}
+extend type VisitNote {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "VisitNote", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `VisitNote`.`appointment`. It must match the value of `Appointment`.`id`. See `@ref` for how to customize it.
+  """
+  appointmentId: UUID! @fdc_generated(from: "VisitNote.appointment", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `VisitNote`.`patient`. It must match the value of `Patient`.`id`. See `@ref` for how to customize it.
+  """
+  patientId: UUID! @fdc_generated(from: "VisitNote.patient", purpose: IMPLICIT_REF_FIELD)
+}

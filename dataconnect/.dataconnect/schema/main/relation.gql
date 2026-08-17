@@ -1,0 +1,586 @@
+extend type Appointment {
+  """
+  ✨ List `VisitNote` objects in a one-to-many relationship (where `VisitNote`.`appointment` is this object).
+  """
+  visitNotes_on_appointment(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: VisitNote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [VisitNote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: VisitNote_Having
+  ): [VisitNote!]! @fdc_generated(from: "VisitNote.appointment", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Appointment", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Appointment` table.
+  """
+  _count: Int! @fdc_generated(from: "Appointment.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `appointmentDateTime` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  appointmentDateTime_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.appointmentDateTime", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `doctorId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  doctorId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.doctorId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `notes` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  notes_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.notes", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `patientId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  patientId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.patientId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `roomNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  roomNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.roomNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Appointment` table where the `status` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  status_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Appointment.status", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `appointmentDateTime` field in the `Appointment` table.
+  """
+  appointmentDateTime_min: Timestamp @fdc_generated(from: "Appointment.appointmentDateTime", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `appointmentDateTime` field in the `Appointment` table.
+  """
+  appointmentDateTime_max: Timestamp @fdc_generated(from: "Appointment.appointmentDateTime", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Appointment.id", purpose: ENTITY_ID)
+}
+extend type Doctor {
+  """
+  ✨ List `Appointment` objects in a one-to-many relationship (where `Appointment`.`doctor` is this object).
+  """
+  appointments_on_doctor(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Appointment_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Appointment_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Appointment_Having
+  ): [Appointment!]! @fdc_generated(from: "Appointment.doctor", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Doctor", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Doctor` table.
+  """
+  _count: Int! @fdc_generated(from: "Doctor.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `fullName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  fullName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.fullName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `licenseNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  licenseNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.licenseNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `officeLocation` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  officeLocation_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.officeLocation", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `phoneNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  phoneNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.phoneNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Doctor` table where the `specialty` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  specialty_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Doctor.specialty", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Doctor.id", purpose: ENTITY_ID)
+}
+extend type Patient {
+  """
+  ✨ List `Appointment` objects in a one-to-many relationship (where `Appointment`.`patient` is this object).
+  """
+  appointments_on_patient(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Appointment_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Appointment_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Appointment_Having
+  ): [Appointment!]! @fdc_generated(from: "Appointment.patient", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Treatment` objects in a one-to-many relationship (where `Treatment`.`patient` is this object).
+  """
+  treatments_on_patient(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Treatment_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Treatment_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Treatment_Having
+  ): [Treatment!]! @fdc_generated(from: "Treatment.patient", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `VisitNote` objects in a one-to-many relationship (where `VisitNote`.`patient` is this object).
+  """
+  visitNotes_on_patient(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: VisitNote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [VisitNote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: VisitNote_Having
+  ): [VisitNote!]! @fdc_generated(from: "VisitNote.patient", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Patient", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Patient` table.
+  """
+  _count: Int! @fdc_generated(from: "Patient.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `contactEmail` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contactEmail_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.contactEmail", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `dateOfBirth` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  dateOfBirth_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.dateOfBirth", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `fullName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  fullName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.fullName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `insuranceProvider` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  insuranceProvider_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.insuranceProvider", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `medicalHistorySummary` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  medicalHistorySummary_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.medicalHistorySummary", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Patient` table where the `phoneNumber` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  phoneNumber_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Patient.phoneNumber", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `dateOfBirth` field in the `Patient` table.
+  """
+  dateOfBirth_min: Date @fdc_generated(from: "Patient.dateOfBirth", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `dateOfBirth` field in the `Patient` table.
+  """
+  dateOfBirth_max: Date @fdc_generated(from: "Patient.dateOfBirth", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Patient.id", purpose: ENTITY_ID)
+}
+extend type Treatment {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Treatment", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Treatment` table.
+  """
+  _count: Int! @fdc_generated(from: "Treatment.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `currentDosage` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  currentDosage_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.currentDosage", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `endDate` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  endDate_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.endDate", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `instructions` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  instructions_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.instructions", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `patientId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  patientId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.patientId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `startDate` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  startDate_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.startDate", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Treatment` table where the `treatmentName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  treatmentName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Treatment.treatmentName", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `endDate` field in the `Treatment` table.
+  """
+  endDate_min: Date @fdc_generated(from: "Treatment.endDate", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `startDate` field in the `Treatment` table.
+  """
+  startDate_min: Date @fdc_generated(from: "Treatment.startDate", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `endDate` field in the `Treatment` table.
+  """
+  endDate_max: Date @fdc_generated(from: "Treatment.endDate", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `startDate` field in the `Treatment` table.
+  """
+  startDate_max: Date @fdc_generated(from: "Treatment.startDate", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Treatment.id", purpose: ENTITY_ID)
+}
+extend type VisitNote {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "VisitNote", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `VisitNote` table.
+  """
+  _count: Int! @fdc_generated(from: "VisitNote.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `appointmentId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  appointmentId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.appointmentId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `content` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  content_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.content", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `diagnosisCode` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  diagnosisCode_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.diagnosisCode", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `patientId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  patientId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.patientId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `VisitNote` table where the `prescription` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  prescription_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "VisitNote.prescription", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `VisitNote` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "VisitNote.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `VisitNote` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "VisitNote.createdAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "VisitNote.id", purpose: ENTITY_ID)
+}

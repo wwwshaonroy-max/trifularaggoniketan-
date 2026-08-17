@@ -1,0 +1,761 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root,
+  [data-theme='default'] {
+    --background: 145 50% 96%;
+    --foreground: 222.2 47.4% 11.2%;
+    --card: 240 10% 98%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --text-title: 222.2 84% 4.9%;
+    --text-heading: 222.2 47.4% 11.2%;
+    --text-body: 215.4 16.3% 30%;
+  }
+
+  .dark,
+  [data-theme='default-dark'] {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 215 20.2% 65.1%;
+    --text-title: 210 40% 98%;
+    --text-heading: 210 40% 92%;
+    --text-body: 215 20.2% 75%;
+  }
+
+  [data-theme='serene'] {
+    --background: 180 25% 96%;
+    --primary: 175 66% 30%;
+    --primary-foreground: 180 25% 98%;
+    --text-title: 175 66% 25%;
+    --text-heading: 175 66% 30%;
+    --text-body: 180 15% 30%;
+    --ring: 175 66% 30%;
+  }
+
+  [data-theme='serene-dark'] {
+    --background: 180 15% 7%;
+    --primary: 170 70% 70%;
+    --primary-foreground: 180 15% 5%;
+    --text-title: 170 70% 80%;
+    --text-heading: 170 70% 70%;
+    --text-body: 180 10% 75%;
+    --ring: 170 70% 70%;
+  }
+
+  [data-theme='vibrant'] {
+    --background: 30 80% 95%;
+    --primary: 25 85% 55%;
+    --primary-foreground: 30 80% 98%;
+    --text-title: 25 85% 45%;
+    --text-heading: 25 85% 55%;
+    --text-body: 30 50% 30%;
+    --ring: 25 85% 55%;
+  }
+
+  [data-theme='vibrant-dark'] {
+    --background: 20 20% 8%;
+    --primary: 30 90% 70%;
+    --primary-foreground: 20 20% 5%;
+    --text-title: 30 90% 80%;
+    --text-heading: 30 90% 70%;
+    --text-body: 30 30% 75%;
+    --ring: 30 90% 70%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background;
+    color: hsl(var(--text-body));
+    font-family: var(--font-alegreya), serif;
+  }
+
+  body:not(.login-page-active) {
+    background-color: #F9FAFB;
+  }
+
+  .dark body:not(.login-page-active) {
+    background-color: hsl(var(--background));
+  }
+
+  body.login-page-active {
+    background-color: #e8f5e9; /* Light green fallback */
+    background-image: linear-gradient(
+      135deg,
+      hsl(145 70% 97%) 0%,
+      hsl(175 40% 95%) 100%
+    );
+  }
+
+  .dark body.login-page-active {
+    background-color: #0c140d; /* Dark green fallback */
+    background-image: linear-gradient(
+      135deg,
+      hsl(145 60% 8%) 0%,
+      hsl(175 40% 7%) 100%
+    );
+  }
+
+  h1,
+  .text-title {
+    @apply text-xl sm:text-2xl md:text-3xl;
+    color: hsl(var(--text-title));
+  }
+
+  h2,
+  .text-heading {
+    @apply text-lg sm:text-xl md:text-2xl;
+    color: hsl(var(--text-heading));
+  }
+
+  h3,
+  .text-subheading {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+
+  [data-sidebar='content'] {
+    overflow: visible !important;
+  }
+  [data-sidebar='content']::-webkit-scrollbar {
+    display: none;
+  }
+  /* For IE, Edge and Firefox */
+  [data-sidebar='content'] {
+    -ms-overflow-style: none;
+    -webkit-scrollbar-width: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom styles for printing */
+.print-only-block {
+  display: none;
+}
+
+@media print {
+  body {
+    animation: none !important;
+  }
+  .hide-on-print {
+    display: none !important;
+  }
+  .print-only-block {
+    display: block !important;
+  }
+
+  body.printing-dashboard-active,
+  body.printing-report-active,
+  body.printing-active,
+  body.printing-prescription-active {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+    background-color: #fff !important;
+    background-image: none !important;
+  }
+
+  .print-dashboard-container,
+  .print-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5mm;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Use standard fonts for print */
+    color: #000 !important;
+  }
+
+  .print-header {
+    text-align: center;
+    margin-bottom: 4mm;
+    border-bottom: 1px solid #666;
+    padding-bottom: 2mm;
+  }
+  .print-header h1 {
+    font-size: 14pt;
+  }
+  .print-header p,
+  .print-header h2 {
+    font-size: 10pt;
+  }
+  .print-title {
+    font-size: 12pt;
+  }
+
+  .print-dashboard-container table,
+  .print-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9pt;
+  }
+
+  .print-dashboard-container th,
+  .print-dashboard-container td,
+  .print-container th,
+  .print-container td {
+    border: 1px solid #bbb;
+    padding: 1.5mm 2mm;
+    text-align: left;
+    vertical-align: top;
+    word-break: break-word;
+  }
+
+  .print-dashboard-container th,
+  .print-container th {
+    background-color: #f0f0f0 !important;
+    font-weight: bold;
+  }
+
+  .print-instruction-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10mm 12mm;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000 !important;
+  }
+  .print-instruction-container .print-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 3mm;
+  }
+  .print-instruction-container .meta-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9pt;
+    margin-top: 3mm;
+    padding-bottom: 1mm;
+    border-bottom: 1px dotted #888;
+  }
+  .print-instruction-container .patient-name {
+    font-size: 10pt;
+    margin-top: 2mm;
+    margin-bottom: 2mm;
+  }
+  .print-instruction-container .patient-diary-no-print {
+    font-size: 10pt;
+    margin-top: -2mm;
+    margin-bottom: 3mm;
+  }
+  .print-instruction-container .instruction-title {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 4mm 0;
+    font-size: 12pt;
+  }
+  .print-instruction-container .main-instruction {
+    font-size: 11pt;
+    text-align: center;
+    margin: 5mm 0;
+    padding: 3mm;
+    border: 1px dashed #555;
+    border-radius: 5px;
+    min-height: 50px;
+  }
+  .print-instruction-container .advice-section {
+    margin-top: 5mm;
+  }
+  .print-instruction-container .advice-title {
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 2mm;
+  }
+  .print-instruction-container .advice-list {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 10pt;
+    line-height: 1.6;
+  }
+  .print-instruction-container .advice-list li {
+    display: flex;
+    align-items: flex-start;
+  }
+  .print-instruction-container .print-footer {
+    margin-top: 15mm;
+    padding-top: 5mm;
+    position: relative;
+    height: 40mm;
+    text-align: right;
+  }
+  .print-instruction-container .signature-line {
+    display: block;
+    width: 150px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 2mm;
+    margin-left: auto;
+  }
+  .print-instruction-container .signature-area p {
+    margin: 1mm 0;
+    font-size: 10pt;
+  }
+
+  .print-prescription-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans', Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #000 !important;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+  .print-header {
+    text-align: center;
+    margin-bottom: 6mm;
+    border-bottom: 1px solid #555;
+    padding-bottom: 4mm;
+    padding-top: 4mm;
+    background: linear-gradient(to bottom, #f3f4f6, #ffffff) !important;
+    border-radius: 8px 8px 0 0;
+  }
+  .print-header h1 {
+    font-family: 'Poppins', 'PT Sans', sans-serif;
+    margin: 0 0 1mm 0;
+  }
+  .print-header p {
+    font-size: 9pt;
+    margin: 0.5mm 0;
+  }
+  .print-title {
+    margin-top: 3mm;
+  }
+
+  .patient-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1mm 5mm;
+    font-size: 9.5pt;
+    padding: 3mm 12mm;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 4mm;
+  }
+  .patient-info-grid div {
+    padding: 0.5mm 0;
+  }
+
+  .print-section {
+    margin-bottom: 4mm;
+    padding: 0 12mm;
+  }
+  .section-title {
+    font-weight: bold;
+    font-size: 11pt;
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .rx-section {
+    margin-top: 2mm;
+    padding: 2mm;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-left: 10mm;
+    margin-right: 10mm;
+  }
+  .rx-section .section-title {
+    margin-bottom: 0.5mm;
+  }
+
+  .medicines-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 2mm;
+    table-layout: fixed;
+  }
+  .medicines-table th,
+  .medicines-table td {
+    border: 1px solid #777;
+    padding: 1.5mm 2mm;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+  }
+  .medicines-table th {
+    background-color: #f3f4f6 !important;
+    font-weight: bold;
+    font-size: 9.5pt;
+  }
+  .medicines-table .empty-row td {
+    height: 1.8em;
+  }
+  .medicines-table .empty-cell {
+    border-left: 1px solid #777;
+    border-right: 1px solid #777;
+  }
+
+  .whitespace-pre-line {
+    white-space: pre-line;
+  }
+  .follow-up {
+    font-size: 9.5pt;
+    margin-top: 3mm;
+  }
+
+  .print-footer {
+    margin-top: 12mm;
+    padding: 0 12mm 4mm 12mm;
+    position: relative;
+    height: 40mm;
+  }
+  .signature-area {
+    text-align: right;
+    font-size: 9.5pt;
+    position: absolute;
+    bottom: 5mm;
+    right: 12mm;
+  }
+  .signature-line {
+    display: block;
+    width: 150px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 2mm;
+    margin-left: auto;
+  }
+  .signature-area p {
+    margin: 1mm 0;
+  }
+}
+
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 600px;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+
+  /* Premium UI Utilities */
+  .glass-panel {
+    @apply bg-white/70 dark:bg-black/50 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.05)];
+  }
+  
+  .glass-card {
+    @apply bg-white/50 dark:bg-black/30 backdrop-blur-lg border border-white/40 dark:border-white/10 hover:shadow-xl transition-all duration-300;
+  }
+
+  .premium-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+  }
+}
+
+.prescription-sheet {
+      padding: 2rem 1.5rem; 
+      max-width: 450px;
+      height: 660px;
+      margin: 2rem auto;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .instruction-box {
+      border: 1px dashed #6b7280;
+      padding: 0.75rem; 
+      margin-top: 0.5rem;
+      line-height: 1.6;
+  }
+  
+  .advice-list li {
+      margin-bottom: 0.1rem; 
+  }
+  
+  
+  /* Common styles for both preview and print */
+.prescription-sheet-final {
+    background-color: white;
+    color: #000;
+    font-size: 10pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 3.6in;
+    height: 5.6in;
+    padding: 0.25in;
+    margin: 0 auto; /* Center on screen */
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box !important;
+  }
+  
+.prescription-sheet-final .text-lg {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+.prescription-sheet-final .text-base {
+    font-size: 11pt;
+  }
+  
+.prescription-sheet-final .text-sm {
+    font-size: 10pt;
+  }
+  
+.prescription-sheet-final .text-xs {
+    font-size: 8.7pt;
+  }
+  
+.prescription-sheet-final .instruction-box {
+    padding: 0.5rem;
+    border: 1px dashed #6b7280;
+    font-size: 9.4pt;
+    line-height: 1.4;
+  }
+  
+.prescription-sheet-final .instruction-box.instruction-long-text {
+    font-size: 9.1pt;
+    line-height: 1.4;
+  }
+  
+.prescription-sheet-final .advice-list {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+.prescription-sheet-final .advice-list li {
+    font-size: 7.9pt;
+    line-height: 1.3;
+    margin-bottom: 0;
+  }
+  
+.prescription-sheet-final .doctor-info {
+    line-height: 1.4;
+    border: none;
+    padding: 0;
+  }
+.prescription-sheet-final .doctor-info-with-border {
+      border: 1px solid #ccc;
+      padding: 0.25rem;
+  }
+  
+.prescription-sheet-final .doctor-info p {
+    margin-bottom: 0px;
+    line-height: 1.4;
+  }
+  
+.prescription-sheet-final .doctor-info .doctor-title {
+    font-size: 8.7pt;
+  }
+  
+.prescription-sheet-final .doctor-info .doctor-subtitle {
+    font-size: 6.2pt;
+  }
+  
+.prescription-sheet-final .doctor-info .doctor-name {
+    font-size: 8.7pt;
+  }
+.prescription-sheet-final .doctor-info .doctor-degree {
+      font-size: 5.5pt;
+  }
+  
+.prescription-sheet-final .doctor-info .doctor-specialty {
+      font-size: 6.2pt;
+  }
+  
+.prescription-sheet-final .doctor-info .doctor-location {
+    font-size: 7.8pt;
+  }
+.prescription-sheet-final .doctor-info .doctor-contact {
+      font-size: 7.8pt;
+  }
+  
+  .report-sheet-final {
+    width: 100%;
+    padding: 1rem;
+    background: white;
+    box-sizing: border-box;
+    color: black;
+  }
+  
+  
+  @media print {
+    @page {
+      size: 3.6in 5.6in;
+      margin: 0;
+    }
+  
+    @page report {
+      size: A4;
+      margin: 0.5in;
+    }
+    
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    
+    .print-only {
+      display: block !important;
+    }
+    
+    #printable-area {
+      display: block !important;
+    }
+    
+.prescription-sheet-final {
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      color: #000 !important;
+    }
+  
+    .printable-label-wrapper {
+      page-break-after: always;
+    }
+    
+.prescription-sheet-final * {
+      color: #000 !important;
+    }
+  
+.prescription-sheet-final .instruction-box {
+      border: 1px dashed #6b7280 !important;
+    }
+.prescription-sheet-final .text-red-700 {
+      color: #b91c1c !important; /* Tailwind's red-700 */
+    }
+.prescription-sheet-final .text-indigo-700 {
+        color: #4338ca !important; /* Tailwind's indigo-700 */
+    }
+  
+    .report-sheet-final {
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      width: 100%;
+      min-height: auto;
+      background: white;
+      color: black;
+      font-size: 9pt;
+      break-inside: avoid;
+    }
+    
+    .report-sheet-final *,
+    .report-sheet-final .text-primary,
+    .report-sheet-final .text-muted-foreground {
+      color: black !important;
+    }
+    .report-sheet-final h1 {
+      font-size: 14pt !important;
+      margin-bottom: 0.5rem !important;
+    }
+    .report-sheet-final p {
+      font-size: 10pt !important;
+    }
+    .report-sheet-final table th, .report-sheet-final table td {
+        padding: 2px 4px !important;
+        font-size: 8pt !important;
+    }
+    .report-sheet-final table tfoot tr {
+        font-size: 9pt !important;
+        font-weight: bold;
+    }
+     .report-sheet-final .footer-note {
+      font-size: 7pt !important;
+      margin-top: 1rem !important;
+    }
+  
+  
+    #report-printable-area .report-sheet-final {
+      page: report;
+    }
+    
+    #printable-area .printable-label-wrapper {
+      page-break-after: always;
+    }
+  }
+  
+      
+
+
+
+/* Label print mode: hide everything except label preview area */
+@media print {
+  body.printing-active > *:not(#printable-area) {
+    display: none !important;
+  }
+
+  /* Prescription print: show only prescription printable area */
+  body.printing-prescription > *:not(#prescription-printable-area) {
+    display: none !important;
+  }
+  #prescription-printable-area {
+    display: block !important;
+  }
+
+  /* Report print: show only report area */
+  body.printing-report > *:not(#report-printable-area):not(.print-container) {
+    display: none !important;
+  }
+
+  /* Dashboard print */
+  body.printing-dashboard-active > *:not(.print-dashboard-container) {
+    display: none !important;
+  }
+  .print-dashboard-container {
+    display: block !important;
+  }
+}

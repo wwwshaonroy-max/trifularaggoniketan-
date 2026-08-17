@@ -1,0 +1,43 @@
+type Patient @table {
+  fullName: String!
+  dateOfBirth: Date!
+  contactEmail: String!
+  phoneNumber: String
+  insuranceProvider: String
+  medicalHistorySummary: String
+}
+
+type Doctor @table {
+  fullName: String!
+  specialty: String!
+  licenseNumber: String!
+  officeLocation: String
+  phoneNumber: String
+}
+
+type Appointment @table {
+  appointmentDateTime: Timestamp!
+  status: String!
+  notes: String
+  roomNumber: String
+  patient: Patient!
+  doctor: Doctor!
+}
+
+type Treatment @table {
+  treatmentName: String!
+  startDate: Date!
+  endDate: Date
+  currentDosage: String
+  instructions: String
+  patient: Patient!
+}
+
+type VisitNote @table {
+  content: String!
+  createdAt: Timestamp!
+  diagnosisCode: String
+  prescription: String
+  appointment: Appointment!
+  patient: Patient!
+}

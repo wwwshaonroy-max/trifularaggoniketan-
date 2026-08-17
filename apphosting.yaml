@@ -1,0 +1,33 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+# NOTICE FOR ADMINISTRATOR:
+# 1. The Google Cloud Project MUST be on the Firebase Blaze (pay-as-you-go) billing plan.
+# 2. The compute service account must have the following IAM roles:
+#    - 'Secret Manager Secret Accessor' (to access secrets)
+#    - 'Gemini for Google Cloud User' (to call Gemini models via Vertex AI if required)
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+
+# Environment variables
+env:
+  - variable: GEMINI_API_KEY
+    secret: GEMINI_API_KEY
+
+# Defines secret environment variables that are available to your
+# web framework's server-side code.
+# https://firebase.google.com/docs/app-hosting/configure#secret-environment-variables
+secretEnvironmentVariables:
+  - secret: GOOGLE_GENAI_API_KEY
+    key: GOOGLE_GENAI_API_KEY
+  - secret: STEADFAST_API_URL
+    key: STEADFAST_API_URL
+  - secret: STEADFAST_API_KEY
+    key: STEADFAST_API_KEY
+  - secret: STEADFAST_SECRET_KEY
+    key: STEADFAST_SECRET_KEY
+  - secret: STEADFAST_WEBHOOK_SECRET
+    key: STEADFAST_WEBHOOK_SECRET
